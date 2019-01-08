@@ -1,6 +1,6 @@
 ## An implementation of Luhn check-digit mod10 algorithm
 
-[![Go Report Card](https://goreportcard.com/badge/kolkov/luhn)](https://goreportcard.com/report/kolkov/luhn)
+[![Go Report Card](https://goreportcard.com/badge/github.com/kolkov/luhn)](https://goreportcard.com/report/github.com/kolkov/luhn)
 
 Algorithm will detect any single-digit error, as well as almost all transpositions of adjacent digits. It will not, however, detect transposition of the two-digit sequence 09 to 90 (or vice versa).
 
