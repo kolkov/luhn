@@ -2,7 +2,6 @@ package luhn
 
 import (
 	"errors"
-	"strconv"
 )
 
 // Validate check number is valid or not based on Luhn algorithm
@@ -18,8 +17,7 @@ func Validate(code string) (bool, error) {
 func Generate(source string) (string, error) {
 	sum, err := checkSum(source + "0")
 	checkDigit := 10 - sum%10
-	code := source + strconv.Itoa(checkDigit)
-	return code, err
+	return source + string(checkDigit+48), err
 }
 
 func checkSum(code string) (int, error) {
