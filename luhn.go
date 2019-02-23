@@ -4,13 +4,19 @@ import (
 	"errors"
 )
 
+var errValueNotLuhn = errors.New("must be valid number by Luhn algorithm")
+
 // Validate check number is valid or not based on Luhn algorithm
-func Validate(code string) (bool, error) {
-	sum, err := checkSum(code)
+func Validate(value interface{}) error {
+	s, _ := value.(string)
+	sum, err := checkSum(s)
 	if err != nil {
-		return false, err
+		return err
 	}
-	return sum%10 == 0, nil
+	if sum%10 != 0 {
+		return errValueNotLuhn
+	}
+	return nil
 }
 
 // Generate return the number with check digit

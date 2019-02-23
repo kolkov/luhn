@@ -7,11 +7,11 @@ import "testing"
 func TestValidNums(t *testing.T) {
 	validNums := []string{"4507990000000010", "5323601111111112", "376411234531007", "45847712", "458477122"}
 	for _, item := range validNums {
-		if result, err := Validate(item); err == nil {
-			if !result {
+		if err := Validate(item); err == nil {
+			if err == errValueNotLuhn {
 				t.Error("Valid number validated as invalid", item)
 			}
-		} else {
+		} else if err == errValueNotLuhn {
 			t.Error("Not a digits")
 		}
 	}
@@ -21,11 +21,11 @@ func TestValidNums(t *testing.T) {
 func TestInvalidNums(t *testing.T) {
 	invalidNums := []string{"4507990000000011", "5323601111111113", "376411234531004", "45847172", "458477121"}
 	for _, item := range invalidNums {
-		if result, err := Validate(item); err == nil {
-			if result {
+		if err := Validate(item); err == nil {
+			if err == errValueNotLuhn {
 				t.Error("Invalid number validated as valid", item)
 			}
-		} else {
+		} else if err != errValueNotLuhn {
 			t.Error("Not a digits")
 		}
 	}
@@ -41,8 +41,8 @@ func TestLuhn(t *testing.T) {
 			t.Errorf("for input " + a + " expected signature " + b + " but got " + c + " instead")
 		}
 
-		if result, err := Validate(c); err == nil {
-			if !result {
+		if err := Validate(c); err == nil {
+			if err == errValueNotLuhn {
 				t.Errorf("Unable to validate signature that was generated")
 			}
 		}
