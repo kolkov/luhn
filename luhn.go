@@ -4,7 +4,7 @@ import (
 	"errors"
 )
 
-var errValueNotLuhn = errors.New("must be valid number by Luhn algorithm")
+var ErrValueNotLuhn = errors.New("luhn: must be valid number by Luhn algorithm")
 
 // Validate check number is valid or not based on Luhn algorithm
 func Validate(value interface{}) error {
@@ -14,7 +14,7 @@ func Validate(value interface{}) error {
 		return err
 	}
 	if sum%10 != 0 {
-		return errValueNotLuhn
+		return ErrValueNotLuhn
 	}
 	return nil
 }
@@ -47,11 +47,11 @@ func checkSum(code string) (int, error) {
 	return sum, nil
 }
 
-var errRuneNotInt = errors.New("type: rune was not int")
+var ErrRuneNotInt = errors.New("luhn: rune was not int")
 
 func charToNum(r rune) (int, error) {
 	if '0' <= r && r <= '9' {
 		return int(r) - '0', nil
 	}
-	return 0, errRuneNotInt
+	return 0, ErrRuneNotInt
 }
