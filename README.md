@@ -8,7 +8,7 @@ Algorithm will detect any single-digit error, as well as almost all transpositio
 
 It is not intended to be a cryptographically secure hash function. It is mostly used for pre-flight credit card number validation as specified in [ISO/IEC 7812-1:2015](http://www.iso.org/iso/catalogue_detail?csnumber=66011)
 
-Compatible with the ozzo-validation package.
+Compatible with the [ozzo-validation](https://github.com/go-ozzo/ozzo-validation) package.
 
 ### Usage ###
 
